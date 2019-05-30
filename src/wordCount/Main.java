@@ -32,7 +32,7 @@ public class Main{
 		int hashCount = 0;
 		for (StringFilter d : wordsArrayList){
 			// we need a kay (integer)
-			wordsHashMap.put(hashCount, d);
+			wordsHashMap.put(hashCount, d);   
 			hashCount++;
 		}
 		wordsArrayList.clear();
