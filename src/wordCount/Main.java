@@ -13,20 +13,23 @@ public class Main{
         String[] words = string.split(" +");
 
        
-        
+        // Declaring Array Type as Object.. I think 
+        StringFilter filteredWords[] = new StringFilter[words.length];
 
-        HashMap<String, Integer> wordMap = new HashMap<String, Integer>();
-        for(String word:words){
-             if (!wordMap.containsKey(word)){
-                wordMap.put(word, 1);
+        //Count Occurences
+        for (int i = 0; i < words.length;i++){
+            String word = words[i].toLowerCase();
+            int occurences = 0;
+            for (int x = 0; x < words.length;x++){
+                if(word.equals(words[x].toLowerCase())){
+                    occurences++;
+                }
             }
-            else{
-                wordMap.put(word, wordMap.get(word) + 1);
-            }
+            filteredWords[i] = new StringFilter(words[i],i,occurences);
         }
         
         ArrayList<StringFilter> wordsArrayList = new ArrayList<StringFilter>();
-		wordsArrayList.addAll(wordMap.entrySet());
+		wordsArrayList.addAll(Arrays.asList(filteredWords));
         //Begin Hash Map
         HashMap<Integer, StringFilter> wordsHashMap = new HashMap<Integer, StringFilter>();
 		int hashCount = 0;
@@ -46,11 +49,11 @@ public class Main{
                 if (o1.getValue().getWord().equals(o2.getValue().getWord())) {
                     System.out.println(o2.getKey());
                     sortedMap.remove(o2.getKey());
-                    System.out.println();
+                    System.out.println(o2.getKey());
                 }
                 return o1.getValue().getOccurences() - o2.getValue().getOccurences();
             }
 		});
-		sortedMap.forEach(d -> System.out.println(d));
+		//sortedMap.forEach(d -> System.out.println(d));
 	}
 }
